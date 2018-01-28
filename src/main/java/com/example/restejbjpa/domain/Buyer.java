@@ -1,13 +1,14 @@
 package com.example.restejbjpa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "buyer.all", query = "Select b from Buyer b"),
+        @NamedQuery(name = "buyer.deleteAll", query = "Delete from Buyer")
+})
 public class Buyer {
 
   private long id;

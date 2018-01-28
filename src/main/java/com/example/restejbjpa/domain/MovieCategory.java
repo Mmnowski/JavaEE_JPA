@@ -1,13 +1,14 @@
 package com.example.restejbjpa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "moviecategory.all", query = "Select m from MovieCategory m"),
+        @NamedQuery(name = "moviecategory.deleteAll", query = "Delete from MovieCategory ")
+})
 public class MovieCategory {
 
     private long id;
@@ -20,6 +21,7 @@ public class MovieCategory {
     }
 
     public MovieCategory(String genre, boolean adult, boolean isThreeDimension) {
+        this.genre = genre;
         this.adult = adult;
         this.isThreeDimension = isThreeDimension;
     }

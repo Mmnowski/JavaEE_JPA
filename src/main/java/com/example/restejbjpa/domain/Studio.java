@@ -1,14 +1,14 @@
 package com.example.restejbjpa.domain;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "studio.all", query = "Select s from Studio s"),
+        @NamedQuery(name = "studio.deleteAll", query = "Delete from Studio ")
+})
 public class Studio {
 
 

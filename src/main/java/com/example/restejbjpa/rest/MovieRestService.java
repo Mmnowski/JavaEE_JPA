@@ -2,6 +2,7 @@ package com.example.restejbjpa.rest;
 
 import com.example.restejbjpa.domain.Buyer;
 import com.example.restejbjpa.domain.Movie;
+import com.example.restejbjpa.domain.Movie_;
 import com.example.restejbjpa.domain.MovieCategory;
 import com.example.restejbjpa.domain.Studio;
 import com.example.restejbjpa.service.MovieManager;
@@ -10,11 +11,16 @@ import javax.ejb.EJB;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.security.acl.Owner;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/movie")
@@ -51,7 +57,7 @@ public class MovieRestService {
 
 		Root<Movie> m = cq.from(Movie.class);
 
-		Predicate condition = qb.gt(g.get(Movie_.yearOfRelease), yor);
+		Predicate condition = qb.gt(m.get(Movie_.yearOfRelease), yor);
 		cq.where(condition);
 
 		TypedQuery<Movie> q = em.createQuery(cq);

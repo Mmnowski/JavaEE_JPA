@@ -6,6 +6,16 @@ import com.example.restejbjpa.service.MovieManager;
 import com.example.restejbjpa.service.MovieCategoryManager;
 
 import javax.ejb.EJB;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,7 +46,7 @@ public class MovieCategoryRestService {
 
 
 	@GET
-	@Produces(MediaTypec.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<MovieCategory> getAll() {
 		return mcm.getAll();
 	}
